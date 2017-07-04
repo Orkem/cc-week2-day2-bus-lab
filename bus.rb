@@ -28,4 +28,7 @@ class Bus
     @passengers.clear
   end 
 
+  def pick_up_from_stop(stop)
+    stop.queue().each{|person| add_passenger(person)} if stop.queue.any?
+  end
 end

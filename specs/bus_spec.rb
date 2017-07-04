@@ -11,7 +11,10 @@ class TestBus < Minitest::Test
     @passenger2 = Person.new("Sally", 25)  
     @passenger3 = Person.new("Bob", 15)
     @passenger4 = Person.new("Mary", 46)
-
+    @passenger5 = Person.new("John", 24)
+    @passenger6 = Person.new("Holly", 43)
+    @stop1 = BusStop.new("Leith")
+    @stop2 = BusStop.new("Leith Walk")
     @bus = Bus.new(22, "Ocean Terminal")
   end 
 
@@ -43,4 +46,14 @@ class TestBus < Minitest::Test
     assert_equal(0, @bus.count_passenger)
   end
 
+  def test_pick_up_from_stop()
+    @stop1.add_person_to_queue(@passenger1)
+    @stop1.add_person_to_queue(@passenger2)
+    @stop1.add_person_to_queue(@passenger3)
+    @stop2.add_person_to_queue(@passenger4)
+    @stop2.add_person_to_queue(@passenger5)
+    @stop2.add_person_to_queue(@passenger6)
+    @bus.pick_up_from_stop(@stop1)
+    assert_equal(3,@bus.count_passenger() )
+  end
 end
